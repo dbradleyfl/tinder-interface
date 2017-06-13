@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
+import Button from './Button';
+
 export default class Buttons extends Component {
   render() {
     return <div className="Buttons">
-      <div className="button negative">
-        <i className="fa fa-times fa-5x" />
-      </div>
-      <div className="button positive">
-        <i className="fa fa-heart fa-5x" />
-      </div>
+      <Button posOrNeg="negative" heartOrTimes="times" />
+      <Button posOrNeg="positive" heartOrTimes="heart" />
     </div>
   }
 }
