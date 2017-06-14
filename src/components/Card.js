@@ -2,30 +2,29 @@ import React, { Component } from 'react'
 import interact from 'interactjs'
 import TWEEN from '@tweenjs/tween.js'
 
+function animate(time) {
+  requestAnimationFrame(animate);
+  TWEEN.update(time);
+}
+
 export default class Card extends Component {
   constructor() {
     super()
     this.state = {
-      swiped: "nowhere",
       x: 0,
       y: 0
     }
   }
 
   componentDidMount() {
-    interact('.Card')
-    .draggable({
+    let inter = interact('#card' + this.props.idx)
+    inter.draggable({
       inertia: true,
       onmove: this.handleDrag.bind(this),
       onend: this.handleDragEnd.bind(this)
     })
 
     requestAnimationFrame(animate);
-
-    function animate(time) {
-    	requestAnimationFrame(animate);
-    	TWEEN.update(time);
-    }
   }
 
   handleDrag (event) {
@@ -49,9 +48,9 @@ export default class Card extends Component {
       })
       tween.start();
     } else if (positionX > rightBound) {
-      console.log("swiped right");
+      this.props.shiftCard()
     } else if (positionX < leftBound) {
-      console.log("swiped left");
+      this.props.shiftCard()
     }
   }
 
@@ -60,8 +59,9 @@ export default class Card extends Component {
     let cardStyle = {
         transform: 'translate(' + x + 'px, ' + y + 'px)',
     }
-    return <div className="Card" style={cardStyle}>
-      <img src="/me.jpg" alt="me" />
+
+    return <div id={"card"+ this.props.idx} className="Card" style={cardStyle} >
+      <img src={this.props.imgUrl} alt="me" />
     </div>
   }
 }
