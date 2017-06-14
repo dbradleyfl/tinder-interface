@@ -29,11 +29,9 @@ export default class Button extends Component {
       var tween = new TWEEN.Tween({x: 0, y: 0})
       tween.to({ x: leftOrRight, y: -100 }, 450)
       tween.onUpdate(function () {
-        console.log(this.x, this.y);
         currentCard.style.transform = 'translate(' + this.x + 'px, ' + this.y + 'px)';
       })
       tween.onComplete(() => {
-        console.log('shifted');
         this.props.shiftCard()
         this.props.toggleAnimationInProgress(false)
       })
