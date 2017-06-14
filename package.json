@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tweenjs/tween.js": "^16.7.0",
     "font-awesome": "^4.7.0",
+    "interactjs": "^1.2.8",
     "react": "^15.6.0",
     "react-dom": "^15.6.0"
   },
